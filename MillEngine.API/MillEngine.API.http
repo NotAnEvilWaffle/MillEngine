@@ -1,0 +1,6 @@
+@MillEngine.API_HostAddress = http://localhost:5203
+
+GET {{MillEngine.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
