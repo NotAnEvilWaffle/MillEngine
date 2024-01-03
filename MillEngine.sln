@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.API", "MillEngine.API\MillEngine.API.csproj", "{6561CB11-DBC7-4C59-817F-6C0B7F050321}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.Shared", "MillEngine.Shared\MillEngine.Shared.csproj", "{262211C2-FD55-4BEA-A771-4D7AFE01A107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.Client", "MillEngine.Client\MillEngine.Client.csproj", "{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{6561CB11-DBC7-4C59-817F-6C0B7F050321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6561CB11-DBC7-4C59-817F-6C0B7F050321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6561CB11-DBC7-4C59-817F-6C0B7F050321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262211C2-FD55-4BEA-A771-4D7AFE01A107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262211C2-FD55-4BEA-A771-4D7AFE01A107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262211C2-FD55-4BEA-A771-4D7AFE01A107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262211C2-FD55-4BEA-A771-4D7AFE01A107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
