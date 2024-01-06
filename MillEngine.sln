@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.Shared", "MillEn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.Client", "MillEngine.Client\MillEngine.Client.csproj", "{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.ScryfallClient", "MillEngine.ScryfallClient\MillEngine.ScryfallClient.csproj", "{64991EEB-EF78-4156-8D7F-995DA2231180}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D4DB50F-FA5C-481C-BC41-7DA872C1E5EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64991EEB-EF78-4156-8D7F-995DA2231180}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64991EEB-EF78-4156-8D7F-995DA2231180}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64991EEB-EF78-4156-8D7F-995DA2231180}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64991EEB-EF78-4156-8D7F-995DA2231180}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
