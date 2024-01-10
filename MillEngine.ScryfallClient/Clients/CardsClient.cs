@@ -1,4 +1,6 @@
-﻿using MillEngine.ScryfallClient.Models;
+﻿
+
+using MillEngine.ScryfallClient.Models;
 
 namespace MillEngine.ScryfallClient.Clients;
 
