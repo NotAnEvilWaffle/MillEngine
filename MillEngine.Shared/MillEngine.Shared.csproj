@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="ScryfallApi.Client">
+        <HintPath>libs\ScryfallApi.Client.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
