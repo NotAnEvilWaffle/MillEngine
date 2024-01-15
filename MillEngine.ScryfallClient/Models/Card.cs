@@ -33,9 +33,6 @@ public class Card : BaseItem
     [JsonPropertyName("cardmarket_id")]
     public int? CardmarketId { get; set; }
 
-    [JsonPropertyName("object")]
-    public string Object { get; set; }
-
     [JsonPropertyName("layout")]
     public string Layout { get; set; }
 

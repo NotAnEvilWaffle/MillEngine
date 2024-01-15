@@ -4,8 +4,6 @@ namespace MillEngine.ScryfallClient.Models;
 
 public class RequestedList<T> : BaseItem where T : BaseItem
 {
-    [JsonPropertyName("object")]
-    public string Object { get; set; }
     
     [JsonPropertyName("data")]
     public IEnumerable<T> Data { get; set; }
