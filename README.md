@@ -1,0 +1,1 @@
+﻿Credit to [Gonkers](https://github.com/Gonkers/Scryfall-API-Client) for their memory cache solution and general rest client implementation
