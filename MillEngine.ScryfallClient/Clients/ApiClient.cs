@@ -24,7 +24,7 @@ public class ApiClient
    public async Task<T> GetApiResponseAsync<T>(string endpoint, bool useCache = true) where T : BaseItem
    {
        string fullResourceUri = _client.BaseAddress.AbsoluteUri + endpoint;
-       if (_cache.TryGetValue(fullResourceUri, out T cachedResult))
+       if (useCache &&  _cache.TryGetValue(fullResourceUri, out T cachedResult))
        {
            return cachedResult;
        }
@@ -52,5 +52,6 @@ public class ApiClient
            Console.WriteLine(e);
            return default(T);
        }
+       
    }
 }

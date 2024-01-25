@@ -22,4 +22,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MillEngine.ScryfallClient\MillEngine.ScryfallClient.csproj" />
+    </ItemGroup>
+
 </Project>
