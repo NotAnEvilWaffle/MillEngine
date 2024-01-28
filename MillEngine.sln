@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.API", "MillEngine.API\MillEngine.API.csproj", "{6561CB11-DBC7-4C59-817F-6C0B7F050321}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.Server", "MillEngine.Server\MillEngine.Server.csproj", "{6561CB11-DBC7-4C59-817F-6C0B7F050321}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillEngine.Shared", "MillEngine.Shared\MillEngine.Shared.csproj", "{262211C2-FD55-4BEA-A771-4D7AFE01A107}"
 EndProject
