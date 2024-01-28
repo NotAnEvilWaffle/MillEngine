@@ -2,5 +2,5 @@
 
 public class CollectionDTO : BaseDTO
 {
-    
+    public List<CardDTO> CollectionCards { get; init; } = [];
 }
