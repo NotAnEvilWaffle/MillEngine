@@ -2,7 +2,7 @@
 
 namespace MillEngine.Shared.Models.DTOs;
 
-public abstract class BaseDTO
+public abstract class BaseEntry
 {
     [Key]
     public int Id { get; init; }

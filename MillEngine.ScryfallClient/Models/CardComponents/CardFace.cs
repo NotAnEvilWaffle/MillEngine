@@ -4,8 +4,6 @@ namespace MillEngine.ScryfallClient.Models.CardComponents;
 
 public class CardFace : BaseItem
 {
-    [JsonPropertyName("object")]
-    public string Object { get; set; }
 
     [JsonPropertyName("name")]
     public string Name { get; set; }

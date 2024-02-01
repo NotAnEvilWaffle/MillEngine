@@ -1,6 +1,6 @@
 ﻿namespace MillEngine.Shared.Models.DTOs;
 
-public class CardDTO : BaseDTO
+public class CardEntry : BaseEntry
 {
     public int Count { get; set; }
     public Guid ScryfallId { get; init; }
