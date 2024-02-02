@@ -17,7 +17,7 @@ namespace MillEngine.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeckEntry>>> GetDecks()
+        public async Task<ActionResult<List<DeckEntry>>> GetDecks()
         {
             return await _context.LibraryDecks.ToListAsync();
         }
@@ -33,6 +33,32 @@ namespace MillEngine.API.Controllers
             return deck;
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, DeckEntry updatedDeck)
+        {
+            if (id != updatedDeck.Id) return BadRequest();
+
+            _context.Entry(updatedDeck).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                if (!DeckExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         [HttpPost]
         public async Task<ActionResult<DeckEntry>> CreateDeck(DeckEntry deck)
         {
@@ -43,7 +69,7 @@ namespace MillEngine.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<DeckEntry>> DeleteDeck(int id)
+        public async Task<IActionResult> DeleteDeck(int id)
         {
             var deck = await _context.LibraryDecks.FindAsync(id);
             if (deck == null) return NotFound();
@@ -51,7 +77,12 @@ namespace MillEngine.API.Controllers
             _context.LibraryDecks.Remove(deck);
             await _context.SaveChangesAsync();
 
-            return deck;
+            return NoContent();
+        }
+
+        private bool DeckExists(int id)
+        {
+            return _context.LibraryDecks.Any(d => d.Id == id);
         }
         
     }
