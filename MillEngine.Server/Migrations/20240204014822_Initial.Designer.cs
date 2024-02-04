@@ -11,7 +11,7 @@ using MillEngine.API;
 namespace MillEngine.API.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20240201214759_Initial")]
+    [Migration("20240204014822_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

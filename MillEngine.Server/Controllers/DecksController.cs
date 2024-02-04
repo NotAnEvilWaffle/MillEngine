@@ -59,9 +59,20 @@ namespace MillEngine.API.Controllers
             return NoContent();
         }
 
-        [HttpPost]
+        [HttpPost("full")]
         public async Task<ActionResult<DeckEntry>> CreateDeck(DeckEntry deck)
         {
+            _context.LibraryDecks.Add(deck);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetDeck), new {id = deck.Id}, deck);
+        }
+        
+        [HttpPost("simple")]
+        public async Task<ActionResult<DeckEntry>> CreateDeck(string deckName)
+        {
+            var deck = new DeckEntry {Name = deckName};
+            
             _context.LibraryDecks.Add(deck);
             await _context.SaveChangesAsync();
 

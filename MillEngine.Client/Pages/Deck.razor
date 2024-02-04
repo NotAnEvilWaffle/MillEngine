@@ -1,0 +1,49 @@
+﻿@page "/deck"
+@inject HttpClient Http
+@using MillEngine.Shared.Models.DTOs
+
+<PageTitle>Decks</PageTitle>
+
+<h1>Decks</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (decks == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Deck ID</th>
+            <th>Commander</th>
+            <th>Partner</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var deck in decks)
+        {
+            <tr>
+                <td>@deck.Name</td>
+                <td>@deck.Id</td>
+                <td>@deck.Commander</td>
+                <td>@deck.Partner</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private DeckEntry[]? decks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        decks = await Http.GetFromJsonAsync<DeckEntry[]>("api/Decks");
+    }
+}

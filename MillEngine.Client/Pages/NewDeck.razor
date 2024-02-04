@@ -1,0 +1,27 @@
+﻿@page "/NewDeck"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using MillEngine.Shared.Models.DTOs
+<h3>NewDeck</h3>
+
+<EditForm>
+    
+</EditForm>
+
+@code {
+    private DeckEntry deck = new DeckEntry();
+
+    private async Task CreateDeck()
+    {
+        var postDeck = await Http.PostAsJsonAsync<DeckEntry>("api/Decks", deck);
+
+        if (postDeck.IsSuccessStatusCode)
+        {
+            NavigationManager.NavigateTo("/deck");
+        }
+        else
+        {
+            
+        }
+    }
+}
