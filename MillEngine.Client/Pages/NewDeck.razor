@@ -1,27 +1,42 @@
-﻿@page "/NewDeck"
+﻿@page "/newdeck"
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 @using MillEngine.Shared.Models.DTOs
 <h3>NewDeck</h3>
 
-<EditForm>
+<EditForm Model="@deck" OnValidSubmit="@CreateDeck">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
     
+    <div class="form-group">
+        <label for="deckName">Deck Name</label>
+        <InputText @bind-Value=deck.Name></InputText>
+        <ValidationMessage For="@(() => deck.Name)"/>
+    </div>
+    
+    <button type="submit">Create Deck</button>
 </EditForm>
 
 @code {
     private DeckEntry deck = new DeckEntry();
 
+    protected override async Task OnParametersSetAsync()
+    {
+        deck.Commander = null;
+        deck.Partner = null;
+    }
+
     private async Task CreateDeck()
     {
-        var postDeck = await Http.PostAsJsonAsync<DeckEntry>("api/Decks", deck);
+        var postDeck = await Http.PostAsJsonAsync<DeckEntry>("api/Decks/full", deck);
+        
+        
 
         if (postDeck.IsSuccessStatusCode)
         {
             NavigationManager.NavigateTo("/deck");
         }
-        else
-        {
-            
-        }
+        
+        
     }
 }
