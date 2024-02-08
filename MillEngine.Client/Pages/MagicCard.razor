@@ -1,7 +1,11 @@
-﻿@page "/MagicCard"
+﻿@page "/MagicCard/{MCard}"
 @using MillEngine.ScryfallClient.Models
 @inject MillEngine.ScryfallClient.ScryfallClient client
-<h3>MagicCard</h3>
+
+
+<div class="mcard">
+    <img src="@MCard.ImageUris.Normal"/>
+</div>
 
 @code {
 

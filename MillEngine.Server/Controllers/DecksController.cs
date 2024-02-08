@@ -19,18 +19,46 @@ namespace MillEngine.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<DeckEntry>>> GetDecks()
         {
-            return await _context.LibraryDecks.ToListAsync();
+            var decks = await _context.LibraryDecks
+                .Include(d => d.DeckCards)
+                .Include(d => d.SideBoard)
+                .Include(d => d.MaybeList)
+                .Include(d => d.WishList)
+                .Include(d => d.Commander)
+                .Include(d => d.Partner)
+                .ToListAsync();
+
+            return decks;
+            //return await _context.LibraryDecks.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<DeckEntry>> GetDeck(int id)
         {
-            var deck = await _context.LibraryDecks.FindAsync(id);
+            
+            
+            // Eager load related entities
+            var deck = await _context.LibraryDecks
+                .Include(d => d.DeckCards)
+                .Include(d => d.SideBoard)
+                .Include(d => d.MaybeList)
+                .Include(d => d.WishList)
+                .Include(d => d.Commander)
+                .Include(d => d.Partner)
+                .FirstOrDefaultAsync(d => d.Id == id);
 
             if (deck == null)
                 return NotFound();
 
             return deck;
+            
+            
+            /*var deck = await _context.LibraryDecks.FindAsync(id);
+
+            if (deck == null)
+                return NotFound();
+
+            return deck;*/
         }
 
         [HttpPut("{id}")]

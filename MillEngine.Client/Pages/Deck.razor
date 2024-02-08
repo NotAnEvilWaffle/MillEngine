@@ -1,5 +1,6 @@
 ﻿@page "/deck"
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 @using MillEngine.Shared.Models.DTOs
 
 <PageTitle>Decks</PageTitle>
@@ -28,7 +29,7 @@ else
         <tbody>
         @foreach (var deck in decks)
         {
-            <tr>
+            <tr @onclick="@(() => NavigationManager.NavigateTo($"/DeckView/{deck.Id}"))">
                 <td>@deck.Name</td>
                 <td>@deck.Id</td>
                 <td>@deck.Commander</td>

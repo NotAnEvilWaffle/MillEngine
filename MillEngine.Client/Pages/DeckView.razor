@@ -1,4 +1,4 @@
-﻿@page "/DeckView/{ID}"
+﻿@page "/DeckView/{ID:int}"
 @inject HttpClient Http
 @inject ScryfallClient.ScryfallClient client
 @using MillEngine.Shared.Models.DTOs
@@ -7,25 +7,29 @@
 
 <div class="container">
     <div class="mcard-row">
-        @foreach (var c in cards)
+        @if (cards != null)
         {
-            <div class="mcard">
-                <img src="@c.ImageUris.Normal"/>
-            </div>
+            @foreach (var c in cards)
+            {
+                <MagicCard MCard="@c"/>
+            }
+        }
+        else
+        {
+            <p>Loading Cards...</p>
         }
     </div>
 </div>
 
 
-
 @code {
 
-    [Parameter] 
+    [Parameter]
     public int ID { get; set; }
 
     public DeckEntry? deck;
-    public Card[] cards;
-    
+    public Card[]? cards;
+
     protected override async Task OnInitializedAsync()
     {
         deck = await Http.GetFromJsonAsync<DeckEntry>($"api/Decks/{ID}");
@@ -34,8 +38,9 @@
         for (int i = 0; i < cards.Length; i++)
         {
             cards[i] = await client.CardsClient.GetById(deck.DeckCards[i].ScryfallId);
-            StateHasChanged();
         }
+
+        StateHasChanged();
     }
 
 }
