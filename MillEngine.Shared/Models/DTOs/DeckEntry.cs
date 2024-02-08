@@ -1,7 +1,10 @@
-﻿namespace MillEngine.Shared.Models.DTOs;
+﻿
+namespace MillEngine.Shared.Models.DTOs;
 
 public class DeckEntry : BaseEntry
 {
+    
+    
     public List<CardEntry> DeckCards { get; init; } = [];
     public List<CardEntry> SideBoard { get; init; } = [];
     public List<CardEntry> MaybeList { get; init; } = [];

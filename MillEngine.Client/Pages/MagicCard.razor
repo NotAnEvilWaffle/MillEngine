@@ -1,0 +1,15 @@
+﻿@page "/MagicCard"
+@using MillEngine.ScryfallClient.Models
+@inject MillEngine.ScryfallClient.ScryfallClient client
+<h3>MagicCard</h3>
+
+@code {
+
+    [Parameter]
+    public Card MCard { get; set; } = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        
+    }
+}
