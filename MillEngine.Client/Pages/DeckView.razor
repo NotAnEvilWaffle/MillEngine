@@ -2,8 +2,11 @@
 @using MillEngine.Shared.Models.DTOs
 @using MillEngine.ScryfallClient.Models
 @using MillEngine.Client.Components
+@using MillEngine.Client.Memory
 @inject HttpClient Http
 @inject ScryfallClient.ScryfallClient client
+@inject DeckStateContainer deckContainer
+@implements IDisposable
 <h3>DeckView</h3>
 
 <div class="container">
@@ -26,22 +29,26 @@
 @code {
 
     [Parameter]
-    public int ID { get; set; }
-
-    public DeckEntry? deck;
-    public Card[]? cards;
+    public int Id { get; set; }
+    
+    public List<Card>? cards = new();
 
     protected override async Task OnInitializedAsync()
     {
-        deck = await Http.GetFromJsonAsync<DeckEntry>($"api/Decks/{ID}");
-        cards = new Card[deck.DeckCards.Count];
+        deckContainer.OnChange += StateHasChanged;
 
-        for (int i = 0; i < cards.Length; i++)
+        foreach (var cardEntry in deckContainer?.SavedDeck.DeckCards)
         {
-            cards[i] = await client.CardsClient.GetById(deck.DeckCards[i].ScryfallId);
+            var card = await client.CardsClient.GetById(cardEntry.ScryfallId);
+            cards?.Add(card);
         }
 
         StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        deckContainer.OnChange -= StateHasChanged;
     }
 
 }

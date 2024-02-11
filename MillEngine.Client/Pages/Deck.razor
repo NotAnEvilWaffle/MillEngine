@@ -1,7 +1,10 @@
 ﻿@page "/deck"
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject DeckStateContainer deckContainer
 @using MillEngine.Shared.Models.DTOs
+@using MillEngine.Client.Memory
+@implements IDisposable
 
 <PageTitle>Decks</PageTitle>
 
@@ -9,7 +12,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (decks == null)
+@if (_decks == null)
 {
     <p>
         <em>Loading...</em>
@@ -27,9 +30,9 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var deck in decks)
+        @foreach (var deck in _decks)
         {
-            <tr @onclick="@(() => NavigationManager.NavigateTo($"/DeckView/{deck.Id}"))">
+            <tr @onclick="@(() => NavigateToDeck(deck))">
                 <td>@deck.Name</td>
                 <td>@deck.Id</td>
                 <td>@deck.Commander</td>
@@ -41,10 +44,22 @@ else
 }
 
 @code {
-    private DeckEntry[]? decks;
+    private DeckEntry[]? _decks;
 
     protected override async Task OnInitializedAsync()
     {
-        decks = await Http.GetFromJsonAsync<DeckEntry[]>("api/Decks");
+        deckContainer.OnChange += StateHasChanged;
+        _decks = await Http.GetFromJsonAsync<DeckEntry[]>("api/Decks");
+    }
+
+    private void NavigateToDeck(DeckEntry deck)
+    {
+        deckContainer.SavedDeck = deck;
+        NavigationManager.NavigateTo($"/DeckView/{deck.Id}");
+    }
+
+    public void Dispose()
+    {
+        deckContainer.OnChange -= StateHasChanged;
     }
 }
