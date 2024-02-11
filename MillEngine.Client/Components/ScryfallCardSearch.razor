@@ -1,0 +1,38 @@
+﻿@using MillEngine.ScryfallClient
+@using MillEngine.ScryfallClient.Models
+@inject ScryfallClient client
+
+<h3>ScryfallCardSearch</h3>
+
+<input type="text" @bind="@SearchText"/>
+<input type="button" value="Search" @onclick="@(() => SearchScryfall(SearchText))"/>
+
+
+<div class="card-wrapper">
+    @if (SearchResults != null && SearchResults.Any())
+    {
+        @foreach (var card in SearchResults)
+        {
+            <MagicCard MCard="@card"/>
+        }
+    }
+</div>
+
+
+@code {
+    private List<Card>? SearchResults = new();
+    
+    private string SearchText { get; set; } = "";
+
+    private async Task SearchScryfall(string searchText)
+    {
+        SearchResults?.Clear();
+        
+        var resultPage = await client.CardsClient.Search(searchText);
+
+        foreach (var cardResult in resultPage.Data)
+        {
+            SearchResults?.Add(cardResult);
+        }
+    }
+}

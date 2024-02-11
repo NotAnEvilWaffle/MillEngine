@@ -1,10 +1,18 @@
 ﻿@page "/MagicCard/{MCard}"
 @using MillEngine.ScryfallClient.Models
-@inject MillEngine.ScryfallClient.ScryfallClient client
+@using MillEngine.ScryfallClient
+@inject ScryfallClient client
 
 
 <div class="mcard">
-    <img src="@MCard.ImageUris.Normal"/>
+    @if (IsMultiFace())
+    {
+        <img src="@MCard.CardFaces?.ElementAt(0).ImageUris.Small" alt="@MCard.Name"/>
+    }
+    else
+    {
+        <img src="@MCard.ImageUris?.Small" alt="@MCard.Name"/>
+    }
 </div>
 
 @code {
@@ -12,5 +20,12 @@
     [Parameter]
     public Card MCard { get; set; } = new();
 
+    // All layouts that have multiple faces
+    private string[] _dualLayouts = ["split", "flip", "transform", "double_faced_token"];
+
+    private bool IsMultiFace()
+    {
+        return _dualLayouts.Contains(MCard.Layout);
+    }
     
 }
