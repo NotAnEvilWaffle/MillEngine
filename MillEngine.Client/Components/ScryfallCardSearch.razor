@@ -1,6 +1,9 @@
 ﻿@using MillEngine.ScryfallClient
 @using MillEngine.ScryfallClient.Models
+@using MillEngine.Client.Memory
 @inject ScryfallClient client
+@inject DeckStateContainer deckContainer
+@implements IDisposable
 
 <h3>ScryfallCardSearch</h3>
 
@@ -13,7 +16,7 @@
     {
         @foreach (var card in SearchResults)
         {
-            <MagicCard MCard="@card"/>
+            <MagicCard MCard="@card" />
         }
     }
 </div>
@@ -35,4 +38,15 @@
             SearchResults?.Add(cardResult);
         }
     }
+
+    protected override void OnInitialized()
+    {
+        deckContainer.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        deckContainer.OnChange -= StateHasChanged;
+    }
+
 }
